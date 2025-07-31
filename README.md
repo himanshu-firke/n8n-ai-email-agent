@@ -129,18 +129,6 @@ Update the following in the workflow:
 *Figure 4: Google Sheets node configuration for data management*
 
 
-## 🎥 Screen Recording
-
-A complete screen recording demonstrating the AI Email Agent in action is available in the `media` folder:
-
-- **File**: `media/ai-email-agent-demo.mp4`
-- **Duration**: 3:45
-- **Content**:
-  - Workflow import and setup
-  - Sending test emails
-  - Managing Google Sheets data
-  - AI agent interaction examples
-
 
 ## 🔧 Customization
 
