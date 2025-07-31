@@ -198,7 +198,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 If you encounter any issues or have questions:
 
-- 📧 Email: [your-email@example.com]
+- 📧 Email: [himanshufirke04@gmail.com]
 - 💬 GitHub Issues: [Create an issue](../../issues)
 - 📖 n8n Documentation: [n8n.io/docs](https://docs.n8n.io/)
 
