@@ -1,0 +1,310 @@
+{
+    "name": "email agent",
+    "nodes": [
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "8fc28e7a-4f99-4b96-bff6-caa4e6db725a",
+        "name": "When chat message received",
+        "webhookId": "380afe58-3803-4942-b7c5-29ff2a5c3393"
+      },
+      {
+        "parameters": {
+          "options": {
+            "systemMessage": "You are a Email assistant.Who can send and get my personal emails. \nAs well as you are a google sheet assistant who can append rows in specified sheet with my given data entries.\n"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 2.1,
+        "position": [
+          208,
+          0
+        ],
+        "id": "51684362-df4e-4327-8f86-fccb3b258ef5",
+        "name": "AI Agent"
+      },
+      {
+        "parameters": {
+          "modelName": "models/gemini-2.5-pro",
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+        "typeVersion": 1,
+        "position": [
+          128,
+          176
+        ],
+        "id": "c9a601e2-8c8f-4226-a496-3cb24f35605b",
+        "name": "Google Gemini Chat Model",
+        "credentials": {
+          "googlePalmApi": {
+            "id": "PiUJiTTLpScVEeRf",
+            "name": "Google Gemini(PaLM) Api account 3"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+        "typeVersion": 1.3,
+        "position": [
+          288,
+          176
+        ],
+        "id": "3e9a48e5-adf8-4248-bdc1-3d6a972335ee",
+        "name": "Simple Memory"
+      },
+      {
+        "parameters": {
+          "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+          "subject": "=Sample check\n",
+          "emailType": "text",
+          "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          384,
+          304
+        ],
+        "id": "dae944dd-1236-4d38-a5e3-0e9efc99e41c",
+        "name": "Send a message in Gmail",
+        "webhookId": "3411f584-a244-459d-9ad2-1eb5de89a067",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "h7xpuTdnz5Z6JI0v",
+            "name": "Gmail account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "getAll",
+          "filters": {}
+        },
+        "type": "n8n-nodes-base.gmailTool",
+        "typeVersion": 2.1,
+        "position": [
+          512,
+          272
+        ],
+        "id": "e9fa27eb-1d4b-452a-9cb0-35cfbedb9b08",
+        "name": "Get many messages in Gmail",
+        "webhookId": "2a37368f-228f-43b7-a09b-e3f3facc987a",
+        "credentials": {
+          "gmailOAuth2": {
+            "id": "h7xpuTdnz5Z6JI0v",
+            "name": "Gmail account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "append",
+          "documentId": {
+            "__rl": true,
+            "value": "1PTtUUAJ-pZu5KtTIjfYkNtKiogzOJY6UVO7LIzKroqA",
+            "mode": "list",
+            "cachedResultName": "himanshu",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1PTtUUAJ-pZu5KtTIjfYkNtKiogzOJY6UVO7LIzKroqA/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 446423572,
+            "mode": "list",
+            "cachedResultName": "Sheet3",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1PTtUUAJ-pZu5KtTIjfYkNtKiogzOJY6UVO7LIzKroqA/edit#gid=446423572"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "Name ": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Name_', ``, 'string') }}",
+              "Email ": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Email_', ``, 'string') }}",
+              "Score": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Score', ``, 'string') }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "Name ",
+                "displayName": "Name ",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Email ",
+                "displayName": "Email ",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              },
+              {
+                "id": "Score",
+                "displayName": "Score",
+                "required": false,
+                "defaultMatch": false,
+                "display": true,
+                "type": "string",
+                "canBeUsedToMatch": true
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.googleSheetsTool",
+        "typeVersion": 4.6,
+        "position": [
+          768,
+          208
+        ],
+        "id": "46eb2ab7-ab4f-4628-9e9a-72637b4436ba",
+        "name": "Append row in sheet in Google Sheets",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "tUb3Feg58m70FJ33",
+            "name": "Google Sheets account 2"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "operation": "delete",
+          "documentId": {
+            "__rl": true,
+            "value": "1PTtUUAJ-pZu5KtTIjfYkNtKiogzOJY6UVO7LIzKroqA",
+            "mode": "list",
+            "cachedResultName": "himanshu",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1PTtUUAJ-pZu5KtTIjfYkNtKiogzOJY6UVO7LIzKroqA/edit?usp=drivesdk"
+          },
+          "sheetName": {
+            "__rl": true,
+            "value": 446423572,
+            "mode": "list",
+            "cachedResultName": "Sheet3",
+            "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1PTtUUAJ-pZu5KtTIjfYkNtKiogzOJY6UVO7LIzKroqA/edit#gid=446423572"
+          },
+          "startIndex": "={{ $fromAI('Start_Row_Number', ``, 'number') }}",
+          "numberToDelete": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Number_of_Rows_to_Delete', ``, 'number') }}"
+        },
+        "type": "n8n-nodes-base.googleSheetsTool",
+        "typeVersion": 4.6,
+        "position": [
+          640,
+          256
+        ],
+        "id": "bca8e552-9d09-41ad-a7b4-c3d1df6fe04a",
+        "name": "Delete rows or columns from sheet in Google Sheets",
+        "credentials": {
+          "googleSheetsOAuth2Api": {
+            "id": "tUb3Feg58m70FJ33",
+            "name": "Google Sheets account 2"
+          }
+        }
+      }
+    ],
+    "pinData": {},
+    "connections": {
+      "When chat message received": {
+        "main": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Gemini Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Simple Memory": {
+        "ai_memory": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_memory",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Send a message in Gmail": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Get many messages in Gmail": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Append row in sheet in Google Sheets": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Delete rows or columns from sheet in Google Sheets": {
+        "ai_tool": [
+          [
+            {
+              "node": "AI Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "active": false,
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "versionId": "2b361445-2f63-417a-8a01-36e751667d8d",
+    "meta": {
+      "templateCredsSetupCompleted": true,
+      "instanceId": "bc68ca53ff725a6c511357261dcc738bf111077f9c886f1895d3b79a62e8a20e"
+    },
+    "id": "jeLoEMOOwDrUVQy1",
+    "tags": []
+  }

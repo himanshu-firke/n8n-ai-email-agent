@@ -1,0 +1,42 @@
+# Credentials and sensitive data
+*.env
+.env*
+credentials.json
+config.json
+
+# Node modules (if using any)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Personal notes (optional)
+notes.md
+todo.md
+
+# Large video files (use Git LFS or external hosting)
+*.mp4
+*.avi
+*.mov
+*.mkv
