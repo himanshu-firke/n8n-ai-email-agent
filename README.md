@@ -110,16 +110,22 @@ Update the following in the workflow:
 ![Workflow Overview](screenshots/workflow-overview.png)
 *Figure 1: Complete workflow showing all connected nodes*
 
+
 ### 2. AI Agent Configuration
 ![AI Agent Settings](screenshots/ai-agent-config.png)
+
 *Figure 2: AI Agent node configuration with system message*
+
 
 ### 3. Gmail Node Setup
 ![Gmail Configuration](screenshots/gmail-config.png)
+
 *Figure 3: Gmail node configuration for sending emails*
+
 
 ### 4. Google Sheets Integration
 ![Sheets Configuration](screenshots/sheets-config.png)
+
 *Figure 4: Google Sheets node configuration for data management*
 
 
